@@ -13,7 +13,6 @@
     <Folder Include="punto-4\" />
     <Folder Include="punto-5\" />
     <Folder Include="punto-2\" />
-    <Folder Include="punto-1\" />
   </ItemGroup>
 
 </Project>
