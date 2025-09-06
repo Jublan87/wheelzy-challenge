@@ -1,0 +1,9 @@
+Si tengo datos que casi no cambian (por ejemplo las marcas y modelos de autos, o la lista de estados),
+lo que haria seria cachearlos en la memoria de la app para no ir a la base cada vez que los necesite.
+Con eso haria que las consultas sean mucho más rápidas y no cargaria innecesariamente la base.
+
+Eso, si mi aplicación corre en una sola instancia, alcanzaria.
+Pero si tengo varias instancias (ejemplo en la nube con balanceo),
+cada instancia tendría su propia copia en memoria y podrían quedar desincronizadas cuando hay un cambio.
+En ese caso lo ideal es usar una cache externa (como Redis),
+de esa forma todas leen y actualizan del mismo lugar y se mantienen consistentes.
