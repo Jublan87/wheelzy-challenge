@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="punto-4\" />
     <Folder Include="punto-5\" />
   </ItemGroup>
 
