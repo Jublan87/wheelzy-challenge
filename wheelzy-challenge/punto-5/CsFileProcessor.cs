@@ -11,13 +11,10 @@ public class CsFileProcessor
         {
             string content = File.ReadAllText(file);
 
-            // a) Fix async method names
             content = FixAsyncMethodNames(content);
 
-            // b) Fix naming of Vm/Dto
             content = FixNaming(content);
 
-            // c) Add blank line between methods
             content = AddBlankLineBetweenMethods(content);
 
             File.WriteAllText(file, content);

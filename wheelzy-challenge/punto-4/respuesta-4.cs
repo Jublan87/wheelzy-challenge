@@ -4,6 +4,13 @@ namespace wheelzy_challenge.punto_4
 {
     internal class respuesta_4
     {
+        private readonly ApplicationDbContext _context;
+
+        public respuesta_4(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task<List<OrderDTO>> GetOrders(DateTime? dateFrom, DateTime? dateTo, List<int> customerIds, List<int> statusIds, bool? isActive)
         {
             var query = _context.Orders.AsQueryable();
