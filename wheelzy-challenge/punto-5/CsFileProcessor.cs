@@ -39,17 +39,18 @@ public class CsFileProcessor
     public string FixNaming(string content)
     {
         // Reemplaza Vm/Vms/Dto/Dtos por VM/VMs/DTO/DTOs
-        content = Regex.Replace(content, @"\bVm\b", "VM");
-        content = Regex.Replace(content, @"\bVms\b", "VMs");
-        content = Regex.Replace(content, @"\bDto\b", "DTO");
-        content = Regex.Replace(content, @"\bDtos\b", "DTOs");
+        // Busca estas palabras como sufijos de identificadores o como palabras completas
+        content = Regex.Replace(content, @"Vm(?=\s|{|$|[^\w])", "VM");
+        content = Regex.Replace(content, @"Vms(?=\s|{|$|[^\w])", "VMs");
+        content = Regex.Replace(content, @"Dto(?=\s|{|$|[^\w])", "DTO");
+        content = Regex.Replace(content, @"Dtos(?=\s|{|$|[^\w])", "DTOs");
         return content;
     }
 
     public string AddBlankLineBetweenMethods(string content)
     {
         // Inserta una línea en blanco entre métodos consecutivos
-        var pattern = @"\}\s*(public|private|protected|internal)\s";
-        return Regex.Replace(content, pattern, "}\n\n$1");
+        var pattern = @"\}\s+(public|private|protected|internal)\s";
+        return Regex.Replace(content, pattern, "}\n\n$1 ");
     }
 }
