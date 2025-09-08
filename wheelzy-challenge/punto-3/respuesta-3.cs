@@ -1,19 +1,26 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace wheelzy_challenge.punto_3
 {
     internal class respuesta_3
     {
-        // METODO ORIGINAL
-        public void UpdateCustomersBalanceByInvoices(List<Invoice> invoices)
+        private readonly ApplicationDbContext dbContext;
+
+        public respuesta_3(ApplicationDbContext context)
         {
-            foreach (var invoice in invoices)
-            {
-                var customer = dbContext.Customers.SingleOrDefault(invoice.CustomerId.Value);
-                customer.Balance -= invoice.Total;
-                dbContext.SaveChanges();
-            }
+            dbContext = context;
         }
+
+        // METODO ORIGINAL
+        //public void UpdateCustomersBalanceByInvoices(List<Invoice> invoices)
+        //{
+        //    foreach (var invoice in invoices)
+        //    {
+        //        var customer = dbContext.Customers.SingleOrDefault(invoice.CustomerId.Value);
+        //        customer.Balance -= invoice.Total;
+        //        dbContext.SaveChanges();
+        //    }
+        //}
 
         /*  Esta funcion tiene varios problemas:
          *  1- Metodo SingleOrDefault incorrecto:
@@ -57,6 +64,5 @@ namespace wheelzy_challenge.punto_3
          *  3- Recorro las facturas y actualizo los balances de los clientes ya cargados en memoria.
          *  4- Llamada a SaveChanges una sola vez despues de actualizar todos los balances.
          */
-
     }
 }
